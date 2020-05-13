@@ -64,37 +64,6 @@ var readCallback = function(readData) {
 var errorCallback = function(errorMessage){
 	alert("Error: " + errorMessage);	
 }
-var mCallback = function(readData) {
-	if(readData === undefined || readData === null || readData === "")
-	{
-		alert("No Response from Device");
-	}
-	else if(readData.includes('""'))
-	{
-		var x = document.getElementById('read_text2').value
-		document.getElementById('read_text2').value = x + readData;
-		alert("ALLCV complete")
-	}
-	else
-	{
-		var x = document.getElementById('read_text2').value
-		document.getElementById('read_text2').value = x + readData;
-		setTimeout(readm,3000);
-	}
-}
-var hhCallback = function(readData) {
-	if(readData === undefined || readData === null || readData === "")
-	{
-		alert("No Response from Device/ No Response Needed/ Response Completed");
-	}
-	else
-	{
-		var x = document.getElementById('read_text2').value
-		document.getElementById('read_text2').value = x + readData;
-		readm2();
-	}
-}
-
 
 function readFromSelectedPrinter()
 {
@@ -109,26 +78,63 @@ function getDeviceCallback(deviceList)
 
 function getallcv()
 {
-	selected_device.send("! U1 getvar \"allcv\" \r\n", undefined, errorCallback);
-	setTimeout(readm,3000);
-}
-function getHH()
-{
-	selected_device.send("~CC^^XA^HH^XZ", undefined, errorCallback);
-	readm2();
+	
+	if (selected_device.connection === "network")
+	{
+		selected_device.send("! U1 getvar \"allcv\" \r\n", undefined, errorCallback);
+		readALLCVnt();
+			
+	}
+	else
+	{
+		selected_device.sendThenReadUntilStringReceived("! U1 getvar \"allcv\" \r\n",'""', allcvpst, errorCallback, 20);
+	}
 }
 
-function readm()
-{
-	selected_device.read(mCallback, errorCallback);
+var allcvpst = function (readData){
+	var x = document.getElementById('read_text2').value;
+	document.getElementById('read_text2').value = x + readData;
+	alert("ALLCV complete");
 }
-function readm2()
+
+function readALLCVnt()
 {
-	selected_device.read(hhCallback, errorCallback);
+	selected_device.read(allcvntpst, errorCallback);
+}
+
+var allcvntpst = function(readData) {
+	if(readData === undefined || readData === null || readData === "")
+	{
+		alert("No Response from Device/ No Response Needed/ Response Completed");
+	}
+	else if(readData.includes('""'))
+	{
+		var x = document.getElementById('read_text2').value
+		document.getElementById('read_text2').value = x + readData;
+		alert("ALLCV complete");
+	}
+	else
+	{
+		var x = document.getElementById('read_text2').value
+		document.getElementById('read_text2').value = x + readData;
+		setTimeout(readALLCVnt, 2000);
+	}
+}
+
+function getHH()
+{
+	selected_device.sendThenReadAllAvailable("~CC^^XA^HH^XZ", HHpst, errorCallback, 20);
+}
+
+var HHpst = function (readData){
+	var x = document.getElementById('read_text2').value;
+	document.getElementById('read_text2').value = x + readData;
+	alert("HH complete");
 }
 
 function sendImage(imageUrl)
 {
+	url = window.location.href.substring(0, window.location.href.lastIndexOf("/"));
 	url = "https://rocky289.github.io/" + imageUrl;
 	selected_device.sendUrl(url, undefined, errorCallback)
 }
