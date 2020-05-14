@@ -68,7 +68,7 @@ var errorCallback = function(errorMessage){
 function readFromSelectedPrinter()
 {
 
-	selected_device.read(readCallback, errorCallback);
+	selected_device.readAllAvailable(readCallback, errorCallback, 1);
 	
 }
 function getDeviceCallback(deviceList)
@@ -81,12 +81,14 @@ function getallcv()
 	
 	if (selected_device.connection === "network")
 	{
+		alert("Getting ALLCV. Please wait..");
 		selected_device.send("! U1 getvar \"allcv\" \r\n", undefined, errorCallback);
 		readALLCVnt();
 			
 	}
 	else
 	{
+		alert("Getting ALLCV. Please wait..");
 		selected_device.sendThenReadUntilStringReceived("! U1 getvar \"allcv\" \r\n",'""', allcvpst, errorCallback, 20);
 	}
 }
@@ -123,6 +125,7 @@ var allcvntpst = function(readData) {
 
 function getHH()
 {
+	alert("Getting HH. Please wait..");
 	selected_device.sendThenReadAllAvailable("~CC^^XA^HH^XZ", HHpst, errorCallback, 20);
 }
 
@@ -132,10 +135,63 @@ var HHpst = function (readData){
 	alert("HH complete");
 }
 
+function calib()
+{
+	selected_device.send("! U1 do \"zpl.calibrate\" \"run\" \r\n", undefined, errorCallback);
+}
+
+function RFIDcalib()
+{
+	selected_device.send("! U1 setvar \"rfid.tag.calibrate\" \"run\" \r\n", undefined, errorCallback);
+}
+
+function BClearBonding()
+{
+	selected_device.send("! U1 do \"bluetooth.clear_bonding_cache\" \"run\" \r\n", undefined, errorCallback);
+}
+
+function BRestore()
+{
+	selected_device.send("! U1 do \"device.restore_defaults\" \"bluetooth\" \r\n", undefined, errorCallback);
+}
+
+function IPRestore()
+{
+	selected_device.send("! U1 do \"device.restore_defaults\" \"ip\" \r\n", undefined, errorCallback);
+}
+
+function WLANRestore()
+{
+	selected_device.send("! U1 do \"device.restore_defaults\" \"wlan\" \r\n", undefined, errorCallback);
+}
+
+function RFIDRestore()
+{
+	selected_device.send("! U1 setvar \"rfid.tag.calibrate\" \"restore\" \r\n", undefined, errorCallback);
+}
+
+function DISPRestore()
+{
+	selected_device.send("! U1 do \"device.restore_defaults\" \"display\" \r\n", undefined, errorCallback);
+}
+
+function PWRRestore()
+{
+	selected_device.send("! U1 do \"device.restore_defaults\" \"power\" \r\n", undefined, errorCallback);
+}
+
+function MediaFeed()
+{
+	var PW = document.getElementById('PWOpt').value;
+	var HC = document.getElementById('HCOpt').value;
+	var cmd = "^XA^MF"+PW+","+HC+"^JUS^XZ";
+	selected_device.send(cmd, undefined, errorCallback);
+}
+
 function sendImage(imageUrl)
 {
 	url = window.location.href.substring(0, window.location.href.lastIndexOf("/"));
-	url = "https://rocky289.github.io/" + imageUrl;
+	url = url + "/" + imageUrl;
 	selected_device.sendUrl(url, undefined, errorCallback)
 }
 function sendImageHttp(imageUrl)

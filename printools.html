@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Zebra Browser Print Test Page</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="/css/newcss.css">
+<script type="text/javascript" src="/scripts/BrowserPrint-3.0.216.min.js"></script>
+<script type="text/javascript" src="/scripts/rocky289.js"></script>
+</head>
+<body>
+
+<div class="header">
+  <h1>BrowserPrint Test Page</h1>
+  <p>A page to assist with troubleshooting the printer</p>
+</div>
+
+<div class="navbar">
+  <a href="index.html">Home</a>
+  <a href="download.html">Downloads</a>
+  <a href="utils.html" class="active">Utilities</a>
+  <a href="#">Link</a>
+</div>
+
+<div class="row">
+  <div class="main">
+	<center>
+    <p>Selected Device: <select id="selected_device" onchange=onDeviceSelected(this);></select></p>
+	<h5>Calibration</h5>
+	<p><input type="button" value="Calibrate (ZPL)" onclick="writeToSelectedPrinter('~JC')"> <input type="button" value="Calibrate (SGD)" onclick="calib()"></p>
+	<p><input type="button" value="RFID Calibrate (ZPL)" onclick="writeToSelectedPrinter('^XA^HR^XZ')"> <input type="button" value="RFID Calibrate (SGD)" onclick="RFIDcalib()"></p>
+	<h5>Connectivity</h5>
+	<p><input type="button" value="Clear Bonding Cache" onclick="BClearBonding()"> <input type="button" value="Restore Bluetooth" onclick="BRestore()"> <input type="button" value="Restore IP" onclick="IPRestore()"> <input type="button" value="Restore WLAN" onclick="WLANRestore()"> <input type="button" value="Restore RFID" onclick="RFIDRestore()"></p>
+	<h5>Media Feed</h5>
+	<p>What happens with label media after:</br>Power Up :</br>
+		<select id="PWOpt" name="PWOpt">
+			<option value="F">Feed</option>
+			<option value="N">No Feed</option>
+			<option value="L">Set Label Length</option>
+			<option value="C">Calibrate</option>
+		</select>
+		</br>
+		Head Closes :</br>
+		<select id="HCOpt" name="HCOpt">
+			<option value="F">Feed</option>
+			<option value="N">No Feed</option>
+			<option value="L">Set Label Length</option>
+			<option value="C">Calibrate</option>
+		</select>
+		</br>
+		<input type="button" value="Apply" onclick="MediaFeed()">
+	</p>
+	<h5>Restore</h5>
+	<p><input type="button" value="Restore Display" onclick="DISPRestore()"> <input type="button" value="Restore Power" onclick="PWRRestore()"> <input type="button" value="Restore Factory (ZPL)" onclick="writeToSelectedPrinter('^XA^JUF^XZ')"> <input type="button" value="Restore Network (ZPL)" onclick="writeToSelectedPrinter('^XA^JUN^XZ')"></p>
+	<h5>Basic Troubleshooting</h5>
+	<p><input type="button" value="Print Config Label" onclick="writeToSelectedPrinter('~WC')"> <input type="button" value="Print Object List" onclick="writeToSelectedPrinter('^XA^WD*:*.*^XZ')"> <input type="button" value="Feed One Label" onclick="writeToSelectedPrinter('~PH')"></p>
+	<h5>Advanced Troubleshooting</h5>
+	<p>Send command to printer</br><input type="text" name="write_text" id="write_text"><input type="button" value="Write" onclick="writeToSelectedPrinter(document.getElementById('write_text').value)"></br></br>Pause or Resume printer</br><input type="button" value="Pause Printer" onclick="writeToSelectedPrinter('~PP')"> <input type="button" value="Resume Printer" onclick="writeToSelectedPrinter('~PS')"></br></br>Reboot printer</br><input type="button" value="Reboot Printer" onclick="writeToSelectedPrinter('~JR')"></br></br>Diagnostic Mode</br><input type="button" value="Enter" onclick="writeToSelectedPrinter('~JD')"> <input type="button" value="Exit" onclick="writeToSelectedPrinter('~JE')"></p>
+	</center>
+  </div>
+</div>
+
+<div class="footer">
+  <h2>Thank you for using this page</h2>
+</div>
+
+</body>
+</html>

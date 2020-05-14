@@ -1,19 +1,39 @@
-<html>
-<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<script type="text/javascript" src="/scripts/BrowserPrint-3.0.216.min.js"></script>
-<script type="text/javascript" src="/scripts/rocky289.js"></script>
+<title>Zebra Browser Print Test Page</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="/css/newcss.css">
 </head>
-<body><center>
+<body>
 
-<span style="font-size:200%">Zebra Browser Print Test Page</span><br/><br/>
+<div class="header">
+  <h1>BrowserPrint Test Page</h1>
+  <p>A page to assist with troubleshooting the printer</p>
+</div>
 
-Selected Device: <select id="selected_device" onchange=onDeviceSelected(this);></select> <!--  <input type="button" value="Change" onclick="changeDevice();">--> <br/><br/> 
-<input type="button" value="Get Application Configuration" onclick="getConfig()">  <input type="button" value="Send Config Label" onclick="writeToSelectedPrinter('~wc')">  <input type="button" value="Send ZPL Label" onclick="writeToSelectedPrinter('^XA^FO200,200^A0N36,36^FDTest Label^FS^XZ')">  <input type="button" value="Get Status" onclick="writeToSelectedPrinter('~hs'); readFromSelectedPrinter()">  <input type="button" value="Get Local Devices" onclick="BrowserPrint.getLocalDevices(getDeviceCallback, errorCallback);"><br/><br/>
-<input type="text" name="write_text" id="write_text"><input type="button" value="Write" onclick="writeToSelectedPrinter(document.getElementById('write_text').value)">  <input type="button" value="Read" onclick="readFromSelectedPrinter()">  <input type="button" value="ALLCV" onclick="getallcv()">  <input type="button" value="HH" onclick="getHH()"><br/><br/>
-<input type="button" value="Send BMP" onclick="sendImage('Zebra_logobox.bmp');">  <input type="button" value="Send JPG" onclick="sendImage('ZebraGray.jpg');"><br/><br/>
-<textarea rows="15" cols="50" name="write_text2" id="write_text2" ></textarea>  <textarea rows="15" cols="50" name="read_text2" id="read_text2" ></textarea><br/><input type="button" value="Send Text" onclick="writeToSelectedPrinter(document.getElementById('write_text2').value)">  <input type="button" value="Read" onclick="readFromSelectedPrinter()"><br/><br/>
+<div class="navbar">
+  <a href="index.html" class="active">Home</a>
+  <a href="download.html">Downloads</a>
+  <a href="utils.html">Utilities</a>
+  <a href="#">Link</a>
+</div>
 
-</center>
+<div class="row">
+  <div class="main">
+	<center>
+    <h2>Welcome</h2>
+    <h5></h5>
+    <p>This website was created with the intention of troubleshooting a Zebra printer connected via USB or Network.</p>
+	<p></p>
+	</center>
+  </div>
+</div>
+
+<div class="footer">
+  <h2>Thank you for using this page</h2>
+</div>
+
 </body>
 </html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Zebra Browser Print Test Page</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="/css/newcss.css">
+<script type="text/javascript" src="/scripts/BrowserPrint-3.0.216.min.js"></script>
+<script type="text/javascript" src="/scripts/rocky289.js"></script>
+</head>
+<body>
+
+<div class="header">
+  <h1>BrowserPrint Test Page</h1>
+  <p>A page to assist with troubleshooting the printer</p>
+</div>
+
+<div class="navbar">
+  <a href="index.html">Home</a>
+  <a href="download.html">Downloads</a>
+  <a href="utils.html" class="active">Utilities</a>
+  <a href="#">Link</a>
+</div>
+
+<div class="row">
+  <div class="main">
+	<center>
+    <p>Selected Device: <select id="selected_device" onchange=onDeviceSelected(this);></select></p>
+	<p><input type="button" value="Send Data" onclick="writeToSelectedPrinter(document.getElementById('write_text2').value)"> <input type="button" value="Read" onclick="readFromSelectedPrinter()"> <input type="button" value="ALLCV" onclick="getallcv()">  <input type="button" value="HH" onclick="getHH()"></p>
+	<p>Send Data Textbox</br><textarea rows="25" cols="100" name="write_text2" id="write_text2" style="resize:vertical"></textarea></p>
+	<p><input type="button" value="Select All and Copy" onclick="document.getElementById('read_text2').focus();document.getElementById('read_text2').select();document.execCommand('copy');"> <input type="button" value="Clear Received Data" onclick="document.getElementById('read_text2').focus();document.getElementById('read_text2').select();document.execCommand('delete');document.getElementById('write_text2').focus();"></p>
+	<p>Receive Data Textbox</br><textarea rows="25" cols="100" name="read_text2" id="read_text2" style="resize:vertical"></textarea></p>
+	</center>
+  </div>
+</div>
+
+<div class="footer">
+  <h2>Thank you for using this page</h2>
+</div>
+
+</body>
+</html>
