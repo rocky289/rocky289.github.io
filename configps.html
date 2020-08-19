@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Zebra Browser Print Test Page</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="/css/newCSS.css">
+<script type="text/javascript" src="/scripts/BrowserPrint-3.0.216.min.js"></script>
+<script type="text/javascript" src="/scripts/rocky289.js"></script>
+</head>
+<body>
+
+<div class="header">
+  <h1>BrowserPrint Test Page</h1>
+  <p>A page to assist with troubleshooting the printer</p>
+</div>
+
+<div class="navbar">
+  <a href="index.html">Home</a>
+  <a href="download.html">Downloads</a>
+  <a href="utils.html" class="active">Utilities</a>
+  <a href="#">Link</a>
+</div>
+
+<div class="row">
+  <div class="main">
+	<center>
+    <p>Selected Device: <select id="selected_device" onchange=onDeviceSelected(this);></select></p>
+	<p>Printer DPI</br>
+		<select id="PDpi" name="PDpi">
+			<option value="203" selected="selected">203 dpi</option>
+			<option value="300">300 dpi</option>
+			<option value="600">600 dpi</option>
+		</select>
+		</br>
+	<p>Unit of Measurement</br>
+		<select id="PUoM" name="PUoM">
+			<option value="in" selected="selected">inches</option>
+			<option value="cm">centimeter</option>
+			<option value="mm">millimeter</option>
+		</select>
+		</br>
+	<p>Speed</br>
+		<select id="PSpd" name="PSpd">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4" selected="selected">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12">12</option>
+			<option value="13">13</option>
+			<option value="14">14</option>
+		</select>
+	<p>Darkness</br>
+		<select id="PDrk" name="PDrk">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+			<option value="11">11</option>
+			<option value="12">12</option>
+			<option value="13">13</option>
+			<option value="14">14</option>
+			<option value="15">15</option>
+			<option value="16">16</option>
+			<option value="17">17</option>
+			<option value="18">18</option>
+			<option value="19">19</option>
+			<option value="20" selected="selected">20</option>
+			<option value="21">21</option>
+			<option value="22">22</option>
+			<option value="23">23</option>
+			<option value="24">24</option>
+			<option value="25">25</option>
+			<option value="26">26</option>
+			<option value="27">27</option>
+			<option value="28">28</option>
+			<option value="29">29</option>
+			<option value="34">30</option>
+		</select>
+		</br>
+	<p>Printing Mode</br>
+		<select id="PPMo" name="PPMo">
+			<option value="D" selected="selected">Direct Thermal</option>
+			<option value="T">Thermal Transfer</option>
+		</select>
+		</br>
+	<p>Width</br><input type="text" name="PW_text" id="PW_text" style="text-align:center;" value="4">
+	<p>Length / Height</br><input type="text" name="LL_text" id="LL_text" style="text-align:center;" value="6">
+	<p>Media Type</br>
+		<select id="PMTy" name="PMTy">
+			<option value="W" selected="selected">Label with gap/notches</option>
+			<option value="M">Label with black mark</option>
+			<option value="N">Continuous paper / receipt / journal</option>
+		</select>
+		</br>
+	<p>Label Top</br><input type="text" name="LT_text" id="LT_text" style="text-align:center;" value="0"></br>-120 to 120 (in dots)
+	<p>Label Shift</br><input type="text" name="LS_text" id="LS_text" style="text-align:center;" value="0"></br>-9999 to 9999 (in dots)
+	<p>Tear Off Adjust</br><input type="text" name="TA_text" id="TA_text" style="text-align:center;" value="0"></br>-120 to 120 (in dots)
+	<p>Operation Type</br>
+		<select id="POTy" name="POTy">
+			<option value="T" selected="selected">Tear-off</option>
+			<option value="P">Peel-off</option>
+			<option value="R">Rewind</option>
+			<option value="C">Cutter</option>
+		</select>
+		</br>
+	<p><input type="button" value="Apply Settings" onclick="ConfigPS()">
+	</center>
+  </div>
+</div>
+
+<div class="footer">
+  <h2>Thank you for using this page</h2>
+</div>
+</body>
+</html>
